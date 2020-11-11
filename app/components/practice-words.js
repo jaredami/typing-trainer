@@ -6,32 +6,30 @@ export default class PracticeWordsComponent extends Component {
   getRandomWords() {
     let words = [];
 
-    for (let i = 0; i < 10; i++) {
-      words.push(this.getRandomWord());
+    for (let i = 0; i < 20; i++) {
+      words.push(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
     console.log("words", words);
   }
 
-  getRandomWord() {
-    let consonants = "bcdfghjlmnpqrstv";
-    let vowels = "aeiou";
-    let rand = function (limit) {
-      return Math.floor(Math.random() * limit);
-    };
-    let i;
+  getRandomWord(wordLength = 10) {
+    let consonants = "bcdfghjlmnpqrstv".split("");
+    let vowels = "aeiou".split("");
     let word = "";
-    let length = parseInt(10, 10);
+    let length = parseInt(wordLength, 10);
 
-    vowels = vowels.split("");
-    consonants = consonants.split("");
+    for (let i = 0; i < length / 2; i++) {
+      const randConsonant = consonants[this.getRandomNumber(consonants.length)];
+      const randVowel = vowels[this.getRandomNumber(vowels.length)];
 
-    for (i = 0; i < length / 2; i++) {
-      var randConsonant = consonants[rand(consonants.length)],
-        randVowel = vowels[rand(vowels.length)];
       word += i === 0 ? randConsonant.toUpperCase() : randConsonant;
       word += i * 2 < length - 1 ? randVowel : "";
     }
 
     return word;
+  }
+
+  getRandomNumber(upperLimit, lowerLimit = 0) {
+    return Math.floor(Math.random() * upperLimit) + lowerLimit;
   }
 }
