@@ -1,15 +1,17 @@
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
+import { A } from "@ember/array";
 
 export default class PracticeWordsComponent extends Component {
+  @tracked words = A([]);
+
   @action
   getRandomWords() {
-    let words = [];
-
     for (let i = 0; i < 20; i++) {
-      words.push(this.getRandomWord(this.getRandomNumber(10, 2)));
+      this.words.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
-    console.log("words", words);
+    console.log("this.words", this.words);
   }
 
   getRandomWord(wordLength = 10) {

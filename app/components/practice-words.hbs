@@ -2,4 +2,8 @@ words
 
 <button type="button" {{action 'getRandomWords'}}>Get Words</button>
 
+{{#each this.words as |word|}}
+  <p>{{word}}</p>
+{{/each}}
+
 {{yield}}
