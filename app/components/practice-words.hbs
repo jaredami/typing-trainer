@@ -1,9 +1,15 @@
-words
+
+<h1>Words</h1>
 
 <button type="button" {{action 'getRandomWords'}}>Get Words</button>
 
-{{#each this.words as |word|}}
-  <p>{{word}}</p>
-{{/each}}
+<div>
+  {{#each this.words as |word|}}
+    <span>{{word}}</span>
+  {{/each}}
+</div>
+
+{{on-key '_all' this.handleKeyDown}}
+<p>{{this.keyPressed}}</p>
 
 {{yield}}
