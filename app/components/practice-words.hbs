@@ -7,8 +7,7 @@
 
 <div class="sentence">
   {{#each this.sentence as |char index|}}
-    <span class="sentence__char">{{char}}</span>
-    {{!-- <span class="sentence__char {{if @letterIndex === index "sentence__char--active"}}">{{char}}</span> --}}
+    <span class="sentence__char {{if (eq this.letterIndex index) "sentence__char--active"}}">{{char}}</span>
   {{/each}}
 </div>
 
