@@ -4,11 +4,11 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 
 export default class PracticeWordsComponent extends Component {
-  @tracked keyPressed = 'X';
-  @tracked sentence = '';
+  @tracked keyPressed = "X";
+  @tracked sentence = "";
+  @tracked letterIndex = 0;
 
   wordsArr = A([]);
-  letterIndex = 0;
 
   // Build sentence
   @action
@@ -16,8 +16,7 @@ export default class PracticeWordsComponent extends Component {
     for (let i = 0; i < 20; i++) {
       this.wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
-
-    this.sentence = this.wordsArr.join(' ');
+    this.sentence = this.wordsArr.join(" ").replaceAll(" ", "_").split("");
   }
 
   getRandomWord(wordLength = 10) {
@@ -52,11 +51,16 @@ export default class PracticeWordsComponent extends Component {
 
   checkIfCorrectKey() {
     if (this.keyPressed === this.sentence[this.letterIndex]) {
-      console.log('correct');
+      console.log("correct");
 
       this.letterIndex++;
     } else {
-      console.log('incorrect');
+      console.log("incorrect");
     }
+  }
+
+  @action
+  isCurrentChar(index) {
+    return index === this.letterIndex;
   }
 }

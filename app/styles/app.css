@@ -1,0 +1,7 @@
+.sentence {
+  display: flex;
+}
+
+.sentence__char--active {
+  border: 1px solid red;
+}
