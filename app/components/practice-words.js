@@ -4,19 +4,20 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 
 export default class PracticeWordsComponent extends Component {
-  @tracked words = A([]);
   @tracked keyPressed = 'X';
+  @tracked sentence = '';
 
-  @action
-  handleKeyDown(event) {
-    this.keyPressed = event.key;
-  }
+  wordsArr = A([]);
+  letterIndex = 0;
 
+  // Build sentence
   @action
   getRandomWords() {
     for (let i = 0; i < 20; i++) {
-      this.words.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
+      this.wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
+
+    this.sentence = this.wordsArr.join(' ');
   }
 
   getRandomWord(wordLength = 10) {
@@ -29,7 +30,8 @@ export default class PracticeWordsComponent extends Component {
       const randConsonant = consonants[this.getRandomNumber(consonants.length)];
       const randVowel = vowels[this.getRandomNumber(vowels.length)];
 
-      word += i === 0 ? randConsonant.toUpperCase() : randConsonant;
+      word += i === 0 ? randConsonant : randConsonant;
+      // word += i === 0 ? randConsonant.toUpperCase() : randConsonant;
       word += i * 2 < length - 1 ? randVowel : "";
     }
 
@@ -38,5 +40,23 @@ export default class PracticeWordsComponent extends Component {
 
   getRandomNumber(upperLimit, lowerLimit = 0) {
     return Math.floor(Math.random() * upperLimit) + lowerLimit;
+  }
+
+  // Handle key press
+  @action
+  handleKeyDown(event) {
+    this.keyPressed = event.key;
+
+    this.checkIfCorrectKey();
+  }
+
+  checkIfCorrectKey() {
+    if (this.keyPressed === this.sentence[this.letterIndex]) {
+      console.log('correct');
+
+      this.letterIndex++;
+    } else {
+      console.log('incorrect');
+    }
   }
 }

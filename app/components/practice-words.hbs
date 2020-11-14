@@ -3,11 +3,13 @@
 
 <button type="button" {{action 'getRandomWords'}}>Get Words</button>
 
-<div>
+<p>{{this.sentence}}</p>
+
+{{!-- <div>
   {{#each this.words as |word|}}
     <span>{{word}}</span>
   {{/each}}
-</div>
+</div> --}}
 
 {{on-key '_all' this.handleKeyDown}}
 <p>{{this.keyPressed}}</p>
