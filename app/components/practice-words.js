@@ -17,6 +17,12 @@ export default class PracticeWordsComponent extends Component {
       this.wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
     this.sentence = this.wordsArr.join(" ").replaceAll(" ", "_").split("");
+
+    this.removeButtonFocus();
+  }
+
+  removeButtonFocus() {
+    document.getElementById("get-sentence-btn").blur();
   }
 
   getRandomWord(wordLength = 10) {
@@ -50,12 +56,12 @@ export default class PracticeWordsComponent extends Component {
   }
 
   checkIfCorrectKey() {
-    if (this.sentence[this.letterIndex] === "_" && this.keyPressed === " ") {
+    if (
+      (this.sentence[this.letterIndex] === "_" && this.keyPressed === " ") ||
+      this.keyPressed === this.sentence[this.letterIndex]
+    ) {
       this.letterIndex++;
       console.log("correct");
-    } else if (this.keyPressed === this.sentence[this.letterIndex]) {
-      console.log("correct");
-      this.letterIndex++;
     } else {
       console.log("incorrect");
     }
