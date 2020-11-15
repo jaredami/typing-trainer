@@ -50,9 +50,11 @@ export default class PracticeWordsComponent extends Component {
   }
 
   checkIfCorrectKey() {
-    if (this.keyPressed === this.sentence[this.letterIndex]) {
+    if (this.sentence[this.letterIndex] === "_" && this.keyPressed === " ") {
+      this.letterIndex++;
       console.log("correct");
-
+    } else if (this.keyPressed === this.sentence[this.letterIndex]) {
+      console.log("correct");
       this.letterIndex++;
     } else {
       console.log("incorrect");
