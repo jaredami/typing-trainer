@@ -5,20 +5,25 @@ import { tracked } from "@glimmer/tracking";
 
 export default class PracticeWordsComponent extends Component {
   @tracked keyPressed = "X";
-  @tracked sentence = "";
+  @tracked sentence = this.getRandomWords();
   @tracked letterIndex = 0;
 
   wordsArr = A([]);
 
-  // Build sentence
   @action
+  updateSentence() {
+    this.sentence = this.getRandomWords();
+  }
+
   getRandomWords() {
+    this.removeButtonFocus();
+
+    this.wordsArr = [];
+
     for (let i = 0; i < 20; i++) {
       this.wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
-    this.sentence = this.wordsArr.join(" ").replaceAll(" ", "_").split("");
-
-    this.removeButtonFocus();
+    return this.wordsArr.join(" ").replaceAll(" ", "_").split("");
   }
 
   removeButtonFocus() {
@@ -47,7 +52,6 @@ export default class PracticeWordsComponent extends Component {
     return Math.floor(Math.random() * upperLimit) + lowerLimit;
   }
 
-  // Handle key press
   @action
   handleKeyDown(event) {
     this.keyPressed = event.key;
