@@ -9,6 +9,7 @@ export default class PracticeWordsComponent extends Component {
   @tracked letterIndex = 0;
 
   wordsArr = A([]);
+  sentenceLength = 10;
 
   @action
   updateSentence() {
@@ -20,7 +21,7 @@ export default class PracticeWordsComponent extends Component {
 
     this.wordsArr = [];
 
-    for (let i = 0; i < 20; i++) {
+    for (let i = 0; i < this.sentenceLength; i++) {
       this.wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
     return this.wordsArr.join(" ").replaceAll(" ", "_").split("");
@@ -57,6 +58,10 @@ export default class PracticeWordsComponent extends Component {
     this.keyPressed = event.key;
 
     this.checkIfCorrectKey();
+
+    if (this.letterIndex === this.sentence.length) {
+      this.updateSentence();
+    }
   }
 
   checkIfCorrectKey() {
