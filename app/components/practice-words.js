@@ -10,6 +10,9 @@ export default class PracticeWordsComponent extends Component {
 
   wordsArr = A([]);
   sentenceLength = 10;
+  startTime;
+  elapsedTime;
+  wpm;
 
   @action
   updateSentence() {
@@ -20,10 +23,10 @@ export default class PracticeWordsComponent extends Component {
     this.removeButtonFocus();
 
     this.wordsArr = [];
-
     for (let i = 0; i < this.sentenceLength; i++) {
       this.wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
+
     return this.wordsArr.join(" ").replaceAll(" ", "_").split("");
   }
 
@@ -55,12 +58,19 @@ export default class PracticeWordsComponent extends Component {
 
   @action
   handleKeyDown(event) {
+    if (this.letterIndex === 0) {
+      this.startTime = Date.now();
+    }
+
     this.keyPressed = event.key;
 
     this.checkIfCorrectKey();
 
     if (this.letterIndex === this.sentence.length) {
+      this.elapsedTime = Date.now() - this.startTime;
+      this.getWpm();
       this.updateSentence();
+      this.letterIndex = 0;
     }
   }
 
@@ -74,6 +84,14 @@ export default class PracticeWordsComponent extends Component {
     } else {
       console.log("incorrect");
     }
+  }
+
+  getWpm() {
+    const seconds = this.elapsedTime / 1000;
+    const minutes = seconds / 60;
+    const wpm = this.sentence.length / 5 / minutes;
+    this.wpm = Math.round(100 * wpm) / 100;
+    console.log("this.wpm", this.wpm);
   }
 
   @action
