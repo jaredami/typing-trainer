@@ -7,12 +7,12 @@ export default class PracticeWordsComponent extends Component {
   @tracked keyPressed = "X";
   @tracked sentence = this.getRandomWords();
   @tracked letterIndex = 0;
+  @tracked wpm = "-";
 
   wordsArr = A([]);
-  sentenceLength = 10;
+  sentenceLength = 5;
   startTime;
   elapsedTime;
-  wpm;
 
   @action
   updateSentence() {
