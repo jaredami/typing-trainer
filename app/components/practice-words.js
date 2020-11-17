@@ -88,7 +88,7 @@ export default class PracticeWordsComponent extends Component {
   handleEndOfSentence() {
     this.elapsedTime = Date.now() - this.startTime;
     this.getWpm();
-    this.stats.addEntry(this.wpm);
+    this.stats.addWpmEntry(this.wpm);
     this.updateSentence();
     this.letterIndex = 0;
   }

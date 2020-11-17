@@ -5,5 +5,5 @@ import { tracked } from "@glimmer/tracking";
 export default class StatsComponent extends Component {
   @service stats;
 
-  @tracked wpm = this.stats.entries;
+  @tracked averageWpm = this.stats.getAverageWpm();
 }
