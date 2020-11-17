@@ -2,8 +2,11 @@ import { A } from "@ember/array";
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
+import { inject as service } from "@ember/service";
 
 export default class PracticeWordsComponent extends Component {
+  @service stats;
+
   @tracked keyPressed = "X";
   @tracked sentence = this.getRandomWords();
   @tracked letterIndex = 0;
@@ -66,10 +69,7 @@ export default class PracticeWordsComponent extends Component {
     this.checkIfCorrectKey();
 
     if (this.letterIndex === this.sentence.length) {
-      this.elapsedTime = Date.now() - this.startTime;
-      this.getWpm();
-      this.updateSentence();
-      this.letterIndex = 0;
+      this.handleEndOfSentence();
     }
   }
 
@@ -85,12 +85,19 @@ export default class PracticeWordsComponent extends Component {
     }
   }
 
+  handleEndOfSentence() {
+    this.elapsedTime = Date.now() - this.startTime;
+    this.getWpm();
+    this.stats.addEntry(this.wpm);
+    this.updateSentence();
+    this.letterIndex = 0;
+  }
+
   getWpm() {
     const seconds = this.elapsedTime / 1000;
     const minutes = seconds / 60;
     const wpm = this.sentence.length / 5 / minutes;
     this.wpm = Math.round(100 * wpm) / 100;
-    console.log("this.wpm", this.wpm);
   }
 
   @action
