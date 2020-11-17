@@ -17,21 +17,20 @@ export default class PracticeWordsComponent extends Component {
   @action
   updateSentence() {
     this.sentence = this.getRandomWords();
+    this.removeButtonFocus();
+  }
+
+  removeButtonFocus() {
+    document.getElementById("get-sentence-btn").blur();
   }
 
   getRandomWords() {
-    this.removeButtonFocus();
-
     this.wordsArr = [];
     for (let i = 0; i < this.sentenceLength; i++) {
       this.wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
 
     return this.wordsArr.join(" ").replaceAll(" ", "_").split("");
-  }
-
-  removeButtonFocus() {
-    document.getElementById("get-sentence-btn").blur();
   }
 
   getRandomWord(wordLength = 10) {
