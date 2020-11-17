@@ -1,3 +1,7 @@
+.active {
+  border: 1px solid green;
+}
+
 .sentence {
   display: flex;
   font-size: 1.2rem;
