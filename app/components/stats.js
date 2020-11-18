@@ -6,4 +6,5 @@ export default class StatsComponent extends Component {
   @service stats;
 
   @tracked averageWpm = this.stats.getAverageWpm();
+  @tracked totalSamples = this.stats.getTotalSamples();
 }

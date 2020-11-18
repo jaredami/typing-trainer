@@ -12,7 +12,13 @@ export default class StatsService extends Service {
   getAverageWpm() {
     return (
       this.entries.length &&
-      this.entries.reduce((a, b) => a + b) / this.entries.length
+      Math.round(
+        (100 * this.entries.reduce((a, b) => a + b)) / this.entries.length
+      ) / 100
     );
+  }
+
+  getTotalSamples() {
+    return this.entries.length;
   }
 }
