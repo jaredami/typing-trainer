@@ -1,14 +1,14 @@
 import { A } from "@ember/array";
 import { action } from "@ember/object";
+import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { inject as service } from "@ember/service";
 
 export default class PracticeWordsComponent extends Component {
   @service stats;
 
-  @tracked keyPressed = "X";
-  @tracked sample = this.getRandomWords();
+  @tracked keyPressed = "-";
+  @tracked sample = this.getNewSample();
   @tracked letterIndex = 0;
   @tracked wpm = "-";
 
@@ -16,13 +16,17 @@ export default class PracticeWordsComponent extends Component {
   startTime;
 
   @action
-  updateSample() {
-    this.sample = this.getRandomWords();
+  getNewSample() {
     this.removeButtonFocus();
+    return this.createSample();
   }
 
   removeButtonFocus() {
     document.getElementById("get-sample-btn").blur();
+  }
+
+  createSample() {
+    return this.getRandomWords().join(" ").replaceAll(" ", "_").split("");
   }
 
   getRandomWords() {
@@ -30,7 +34,7 @@ export default class PracticeWordsComponent extends Component {
     for (let i = 0; i < this.sampleLength; i++) {
       wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
-    return wordsArr.join(" ").replaceAll(" ", "_").split("");
+    return wordsArr;
   }
 
   getRandomWord(wordLength = 10) {
@@ -58,16 +62,19 @@ export default class PracticeWordsComponent extends Component {
   @action
   handleKeyDown(event) {
     if (this.letterIndex === 0) {
-      this.startTime = Date.now();
+      this.handleStartOfSample();
     }
 
     this.keyPressed = event.key;
-
     this.checkIfCorrectKey();
 
     if (this.letterIndex === this.sample.length) {
       this.handleEndOfSample();
     }
+  }
+
+  handleStartOfSample() {
+    this.startTime = Date.now();
   }
 
   checkIfCorrectKey() {
@@ -85,7 +92,7 @@ export default class PracticeWordsComponent extends Component {
   handleEndOfSample() {
     this.getWpm();
     this.stats.addWpmEntry(this.wpm);
-    this.updateSample();
+    this.getNewSample();
     this.letterIndex = 0;
   }
 
