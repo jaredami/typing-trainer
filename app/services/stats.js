@@ -6,7 +6,6 @@ export default class StatsService extends Service {
 
   addWpmEntry(item) {
     this.entries.pushObject(item);
-    console.log("this.entries", this.entries);
   }
 
   getAverageWpm() {

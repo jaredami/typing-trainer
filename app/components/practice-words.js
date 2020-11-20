@@ -12,10 +12,8 @@ export default class PracticeWordsComponent extends Component {
   @tracked letterIndex = 0;
   @tracked wpm = "-";
 
-  wordsArr = A([]);
   sentenceLength = 5;
   startTime;
-  elapsedTime;
 
   @action
   updateSentence() {
@@ -28,12 +26,11 @@ export default class PracticeWordsComponent extends Component {
   }
 
   getRandomWords() {
-    this.wordsArr = [];
+    const wordsArr = A([]);
     for (let i = 0; i < this.sentenceLength; i++) {
-      this.wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
+      wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
-
-    return this.wordsArr.join(" ").replaceAll(" ", "_").split("");
+    return wordsArr.join(" ").replaceAll(" ", "_").split("");
   }
 
   getRandomWord(wordLength = 10) {
@@ -86,7 +83,6 @@ export default class PracticeWordsComponent extends Component {
   }
 
   handleEndOfSentence() {
-    this.elapsedTime = Date.now() - this.startTime;
     this.getWpm();
     this.stats.addWpmEntry(this.wpm);
     this.updateSentence();
@@ -94,10 +90,11 @@ export default class PracticeWordsComponent extends Component {
   }
 
   getWpm() {
-    const seconds = this.elapsedTime / 1000;
+    const elapsedTime = Date.now() - this.startTime;
+    const seconds = elapsedTime / 1000;
     const minutes = seconds / 60;
-    const wpm = this.sentence.length / 5 / minutes;
-    this.wpm = Math.round(100 * wpm) / 100;
+    const roughWpm = this.sentence.length / 5 / minutes;
+    this.wpm = Math.round(100 * roughWpm) / 100;
   }
 
   @action
