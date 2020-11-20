@@ -1,3 +1,13 @@
+html {
+  font-family: "Roboto Mono", monospace;
+  background-color: #0c0c0c;
+  color: #f5f5f5;
+}
+
+a {
+  color: #f5f5f5;
+}
+
 .active {
   border: 1px solid green;
 }
@@ -7,6 +17,17 @@
   font-size: 1.2rem;
 }
 
+.sample__char {
+  margin-right: 2px;
+}
+
 .sample__char--active {
-  border: 1px solid red;
+  background: #cc32ff;
+}
+
+.basic-button {
+  cursor: pointer;
+  font-family: "Roboto Mono", monospace;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
 }

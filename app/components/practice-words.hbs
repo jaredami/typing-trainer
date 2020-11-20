@@ -1,18 +1,19 @@
 
 <h1>Practice</h1>
 
-<button
-  id="get-sample-btn"
-  type="button"
-  {{action 'getNewSample'}}>
-  New Sample
-</button>
-
 <div class="sample">
   {{#each this.sample as |char index|}}
     <span class="sample__char {{if (eq this.letterIndex index) "sample__char--active"}}">{{char}}</span>
   {{/each}}
 </div>
+
+<button
+  id="get-sample-btn"
+  class="basic-button"
+  type="button"
+  {{action 'getNewSample'}}>
+  New Sample
+</button>
 
 {{on-key '_all' this.handleKeyDown}}
 <p>Last Key Pressed: {{this.keyPressed}}</p>
