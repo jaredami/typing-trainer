@@ -2,11 +2,11 @@
   border: 1px solid green;
 }
 
-.sentence {
+.sample {
   display: flex;
   font-size: 1.2rem;
 }
 
-.sentence__char--active {
+.sample__char--active {
   border: 1px solid red;
 }

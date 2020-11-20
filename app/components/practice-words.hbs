@@ -2,17 +2,15 @@
 <h1>Practice</h1>
 
 <button
-  id="get-sentence-btn"
+  id="get-sample-btn"
   type="button"
-  {{action 'updateSentence'}}>
-  New Sentence
+  {{action 'updateSample'}}>
+  New Sample
 </button>
 
-{{!-- <p>{{this.sentence}}</p> --}}
-
-<div class="sentence">
-  {{#each this.sentence as |char index|}}
-    <span class="sentence__char {{if (eq this.letterIndex index) "sentence__char--active"}}">{{char}}</span>
+<div class="sample">
+  {{#each this.sample as |char index|}}
+    <span class="sample__char {{if (eq this.letterIndex index) "sample__char--active"}}">{{char}}</span>
   {{/each}}
 </div>
 

@@ -8,26 +8,26 @@ export default class PracticeWordsComponent extends Component {
   @service stats;
 
   @tracked keyPressed = "X";
-  @tracked sentence = this.getRandomWords();
+  @tracked sample = this.getRandomWords();
   @tracked letterIndex = 0;
   @tracked wpm = "-";
 
-  sentenceLength = 5;
+  sampleLength = 5;
   startTime;
 
   @action
-  updateSentence() {
-    this.sentence = this.getRandomWords();
+  updateSample() {
+    this.sample = this.getRandomWords();
     this.removeButtonFocus();
   }
 
   removeButtonFocus() {
-    document.getElementById("get-sentence-btn").blur();
+    document.getElementById("get-sample-btn").blur();
   }
 
   getRandomWords() {
     const wordsArr = A([]);
-    for (let i = 0; i < this.sentenceLength; i++) {
+    for (let i = 0; i < this.sampleLength; i++) {
       wordsArr.pushObject(this.getRandomWord(this.getRandomNumber(10, 2)));
     }
     return wordsArr.join(" ").replaceAll(" ", "_").split("");
@@ -65,15 +65,15 @@ export default class PracticeWordsComponent extends Component {
 
     this.checkIfCorrectKey();
 
-    if (this.letterIndex === this.sentence.length) {
-      this.handleEndOfSentence();
+    if (this.letterIndex === this.sample.length) {
+      this.handleEndOfSample();
     }
   }
 
   checkIfCorrectKey() {
     if (
-      (this.sentence[this.letterIndex] === "_" && this.keyPressed === " ") ||
-      this.keyPressed === this.sentence[this.letterIndex]
+      (this.sample[this.letterIndex] === "_" && this.keyPressed === " ") ||
+      this.keyPressed === this.sample[this.letterIndex]
     ) {
       this.letterIndex++;
       console.log("correct");
@@ -82,10 +82,10 @@ export default class PracticeWordsComponent extends Component {
     }
   }
 
-  handleEndOfSentence() {
+  handleEndOfSample() {
     this.getWpm();
     this.stats.addWpmEntry(this.wpm);
-    this.updateSentence();
+    this.updateSample();
     this.letterIndex = 0;
   }
 
@@ -93,7 +93,7 @@ export default class PracticeWordsComponent extends Component {
     const elapsedTime = Date.now() - this.startTime;
     const seconds = elapsedTime / 1000;
     const minutes = seconds / 60;
-    const roughWpm = this.sentence.length / 5 / minutes;
+    const roughWpm = this.sample.length / 5 / minutes;
     this.wpm = Math.round(100 * roughWpm) / 100;
   }
 
