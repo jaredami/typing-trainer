@@ -8,7 +8,7 @@ export default class PracticeWordsComponent extends Component {
   @service stats;
 
   @tracked keyPressed = "-";
-  @tracked sample = this.getNewSample();
+  @tracked sample = this.createSample();
   @tracked letterIndex = 0;
   @tracked wpm = "-";
 
@@ -18,7 +18,7 @@ export default class PracticeWordsComponent extends Component {
   @action
   getNewSample() {
     this.removeButtonFocus();
-    return this.createSample();
+    this.sample = this.createSample();
   }
 
   removeButtonFocus() {
@@ -26,7 +26,11 @@ export default class PracticeWordsComponent extends Component {
   }
 
   createSample() {
-    return this.getRandomWords().join(" ").replaceAll(" ", "_").split("");
+    const newSample = this.getRandomWords()
+      .join(" ")
+      .replaceAll(" ", "_")
+      .split("");
+    return newSample;
   }
 
   getRandomWords() {
