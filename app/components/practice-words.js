@@ -6,6 +6,7 @@ import { tracked } from "@glimmer/tracking";
 
 export default class PracticeWordsComponent extends Component {
   @service stats;
+  @service settings;
 
   @tracked keyPressed = "-";
   @tracked sample = this.createSample();
@@ -51,8 +52,15 @@ export default class PracticeWordsComponent extends Component {
       const randConsonant = consonants[this.getRandomNumber(consonants.length)];
       const randVowel = vowels[this.getRandomNumber(vowels.length)];
 
-      word += i === 0 ? randConsonant : randConsonant;
-      // word += i === 0 ? randConsonant.toUpperCase() : randConsonant;
+      console.log(
+        "this.settings.includeCapitals",
+        this.settings.includeCapitals
+      );
+      if (this.settings.includeCapitals) {
+        word += i === 0 ? randConsonant.toUpperCase() : randConsonant;
+      } else {
+        word += i === 0 ? randConsonant : randConsonant;
+      }
       word += i * 2 < length - 1 ? randVowel : "";
     }
 

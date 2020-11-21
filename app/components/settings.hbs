@@ -1,3 +1,12 @@
 {{yield}}
 
 <h2>Settings</h2>
+
+<p>Include Capital Letters:</p>
+<label class="switch">
+  <Input
+    @type="checkbox"
+    @checked={{settings.includeCapitals}}
+  />
+  <span class="slider round"></span>
+</label>
