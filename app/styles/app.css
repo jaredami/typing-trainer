@@ -1,15 +1,16 @@
 :root {
   --color-purple: #cc32ff;
+  --color-white: #f5f5f5;
 }
 
 html {
   font-family: "Roboto Mono", monospace;
   background-color: #0c0c0c;
-  color: #f5f5f5;
+  color: var(--color-white);
 }
 
 a {
-  color: #f5f5f5;
+  color: var(--color-white);
   text-decoration: none;
 }
 
@@ -43,7 +44,7 @@ a {
   position: relative;
   display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 28px;
 }
 
 .switch input {
@@ -67,11 +68,11 @@ a {
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
+  height: 22px;
+  width: 22px;
   left: 4px;
-  bottom: 4px;
-  background-color: white;
+  bottom: 3px;
+  background-color: var(--color-white);
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
@@ -85,9 +86,9 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(30px);
+  -ms-transform: translateX(30px);
+  transform: translateX(30px);
 }
 
 /* Rounded sliders */
