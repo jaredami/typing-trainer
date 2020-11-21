@@ -10,10 +10,11 @@ html {
 
 a {
   color: #f5f5f5;
+  text-decoration: none;
 }
 
 .active {
-  border: 1px solid green;
+  border-bottom: 2px solid var(--color-purple);
 }
 
 .sample {
