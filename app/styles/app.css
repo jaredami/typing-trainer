@@ -2,13 +2,14 @@
 @import "switch-toggle.css";
 
 :root {
-  --color-purple: #cc32ff;
+  --color-accent: #40e8e5;
   --color-white: #f5f5f5;
+  --color-black: #1c1919;
 }
 
 html {
   font-family: "Roboto Mono", monospace;
-  background-color: #232120;
+  background-color: var(--color-black);
   color: var(--color-white);
 }
 
@@ -18,7 +19,7 @@ a {
 }
 
 .active {
-  border-bottom: 2px solid var(--color-purple);
+  border-bottom: 2px solid var(--color-accent);
 }
 
 .page-container {
@@ -52,7 +53,7 @@ a {
 @keyframes cursor-blink {
   0% {
     background: var(--color-white);
-    color: black;
+    color: var(--color-black);
   }
   50% {
     background: none;

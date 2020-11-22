@@ -1,5 +1,5 @@
 :root {
-  --color-purple: #cc32ff;
+  --color-accent: #40e8e5;
   --color-white: #f5f5f5;
 }
 
@@ -41,11 +41,11 @@
 }
 
 input:checked + .slider {
-  background-color: var(--color-purple);
+  background-color: var(--color-accent);
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px var(--color-purple);
+  box-shadow: 0 0 1px var(--color-accent);
 }
 
 input:checked + .slider:before {
