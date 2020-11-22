@@ -18,6 +18,14 @@ a {
   border-bottom: 2px solid var(--color-purple);
 }
 
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Practice ===================== */
+
 .sample {
   display: flex;
   font-size: 1.2rem;

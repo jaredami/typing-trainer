@@ -52,10 +52,6 @@ export default class PracticeWordsComponent extends Component {
       const randConsonant = consonants[this.getRandomNumber(consonants.length)];
       const randVowel = vowels[this.getRandomNumber(vowels.length)];
 
-      console.log(
-        "this.settings.includeCapitals",
-        this.settings.includeCapitals
-      );
       if (this.settings.includeCapitals) {
         word += i === 0 ? randConsonant.toUpperCase() : randConsonant;
       } else {
