@@ -9,7 +9,7 @@ export default class PracticeWordsComponent extends Component {
   @service settings;
 
   @tracked keyPressed = "-";
-  @tracked sample = this.createSample();
+  @tracked sample = this.getSample();
   @tracked letterIndex = 0;
   @tracked wpm = "-";
 
@@ -21,16 +21,16 @@ export default class PracticeWordsComponent extends Component {
    */
 
   @action
-  getNewSample() {
+  handleNewSampleButtonClick() {
     this.removeButtonFocus();
-    this.sample = this.createSample();
+    this.sample = this.getSample();
   }
 
   removeButtonFocus() {
     document.getElementById("get-sample-btn").blur();
   }
 
-  createSample() {
+  getSample() {
     const newSample = this.getRandomWords()
       .join(" ")
       .replaceAll(" ", "_")
@@ -110,7 +110,7 @@ export default class PracticeWordsComponent extends Component {
   handleEndOfSample() {
     this.getWpm();
     this.stats.addWpmEntry(this.wpm);
-    this.getNewSample();
+    this.sample = this.getSample();
     this.letterIndex = 0;
   }
 
