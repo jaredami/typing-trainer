@@ -88,13 +88,7 @@ export default class PracticeWordsComponent extends Component {
       this.handleEndOfSample();
     }
 
-    const charSelector = `[data-char="${event.key.toUpperCase()}"]`;
-    const charElement = document.body.querySelector(charSelector);
-    charElement?.classList.add("active-key");
-
-    const keySelector = `[data-key="${event.keyCode}"]`;
-    const keyElement = document.body.querySelector(keySelector);
-    keyElement?.classList.add("active-key");
+    this.toggleActiveKeyClass(this.getKeyElement(event));
   }
 
   handleStartOfSample() {
@@ -135,12 +129,20 @@ export default class PracticeWordsComponent extends Component {
 
   @action
   handleKeyUp(event) {
-    const charSelector = `[data-char="${event.key.toUpperCase()}"]`;
-    const charElement = document.body.querySelector(charSelector);
-    charElement?.classList.remove("active-key");
+    this.toggleActiveKeyClass(this.getKeyElement(event));
+  }
 
-    const keySelector = `[data-key="${event.keyCode}"]`;
+  getKeyElement(keyEvent) {
+    const charSelector = `[data-char="${keyEvent.key.toUpperCase()}"]`;
+    const charElement = document.body.querySelector(charSelector);
+
+    const keySelector = `[data-key="${keyEvent.keyCode}"]`;
     const keyElement = document.body.querySelector(keySelector);
-    keyElement?.classList.remove("active-key");
+
+    return charElement || keyElement;
+  }
+
+  toggleActiveKeyClass(element) {
+    element.classList.toggle("active-key");
   }
 }

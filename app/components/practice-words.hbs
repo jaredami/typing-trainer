@@ -1,3 +1,6 @@
+{{on-key '_all' this.handleKeyDown}}
+{{on-key '_all' this.handleKeyUp event='keyup'}}
+
 <h1>Practice</h1>
 
 <div class="sample">
@@ -14,10 +17,7 @@
   New Sample
 </button>
 
-{{on-key '_all' this.handleKeyDown}}
 <p>WPM: {{this.wpm}}</p>
-
-{{on-key '_all' this.handleKeyUp event='keyup'}}
 
 <div class="keyboard">
   <div class="keyboard__row keyboard__row--h1">
