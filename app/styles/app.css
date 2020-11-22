@@ -39,8 +39,7 @@ a {
 }
 
 .sample__char--active {
-  background: var(--color-white);
-  color: black;
+  animation: cursor-blink 600ms infinite steps(1);
 }
 
 .basic-button {
@@ -48,4 +47,15 @@ a {
   font-family: "Roboto Mono", monospace;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
+}
+
+@keyframes cursor-blink {
+  0% {
+    background: var(--color-white);
+    color: black;
+  }
+  50% {
+    background: none;
+    color: inherit;
+  }
 }
