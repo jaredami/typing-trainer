@@ -18,6 +18,8 @@
 <p>Last Key Pressed: {{this.keyPressed}}</p>
 <p>WPM: {{this.wpm}}</p>
 
+{{on-key '_all' this.handleKeyUp event='keyup'}}
+
 <div class="keyboard">
   <div class="keyboard__row keyboard__row--h1">
     <div data-key="27" class="key--word">

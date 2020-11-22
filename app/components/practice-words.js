@@ -16,6 +16,10 @@ export default class PracticeWordsComponent extends Component {
   sampleLength = 5;
   startTime;
 
+  /**
+   * Sample Region =========================================
+   */
+
   @action
   getNewSample() {
     this.removeButtonFocus();
@@ -67,6 +71,10 @@ export default class PracticeWordsComponent extends Component {
     return Math.floor(Math.random() * upperLimit) + lowerLimit;
   }
 
+  /**
+   * Key Press Region =========================================
+   */
+
   @action
   handleKeyDown(event) {
     if (this.letterIndex === 0) {
@@ -79,6 +87,10 @@ export default class PracticeWordsComponent extends Component {
     if (this.letterIndex === this.sample.length) {
       this.handleEndOfSample();
     }
+
+    const selector = `[data-char="${event.key.toUpperCase()}"]`;
+    const element = document.body.querySelector(selector);
+    element.classList.add("active-key");
   }
 
   handleStartOfSample() {
@@ -115,5 +127,12 @@ export default class PracticeWordsComponent extends Component {
   @action
   isCurrentChar(index) {
     return index === this.letterIndex;
+  }
+
+  @action
+  handleKeyUp(event) {
+    const selector = `[data-char="${event.key.toUpperCase()}"]`;
+    const element = document.body.querySelector(selector);
+    element.classList.remove("active-key");
   }
 }

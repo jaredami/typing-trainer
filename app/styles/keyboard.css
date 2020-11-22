@@ -43,7 +43,8 @@
 }
 
 .keyboard__row > div[data-pressed],
-.keyboard__row > div:active {
+.keyboard__row > div:active,
+.keyboard__row > div.active-key {
   background: #2a2a2a;
   color: #aaa;
   position: relative;
