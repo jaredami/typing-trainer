@@ -1,8 +1,6 @@
 {{on-key '_all' this.handleKeyDown}}
 {{on-key '_all' this.handleKeyUp event='keyup'}}
 
-<h1>Practice</h1>
-
 <div class="sample">
   {{#each this.sample as |char index|}}
     <span class="sample__char {{if (eq this.letterIndex index) "sample__char--active"}}">{{char}}</span>
