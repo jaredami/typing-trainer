@@ -8,7 +8,7 @@
 
 html {
   font-family: "Roboto Mono", monospace;
-  background-color: #0c0c0c;
+  background-color: #232120;
   color: var(--color-white);
 }
 
@@ -31,7 +31,7 @@ a {
 
 .sample {
   display: flex;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .sample__char {
@@ -39,7 +39,8 @@ a {
 }
 
 .sample__char--active {
-  background: var(--color-purple);
+  background: var(--color-white);
+  color: black;
 }
 
 .basic-button {
