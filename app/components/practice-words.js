@@ -8,7 +8,6 @@ export default class PracticeWordsComponent extends Component {
   @service stats;
   @service settings;
 
-  @tracked keyPressed = "-";
   @tracked sample = this.getSample();
   @tracked letterIndex = 0;
   @tracked mistakeIndexes = A([]);
@@ -21,6 +20,7 @@ export default class PracticeWordsComponent extends Component {
 
   @action
   handleNewSampleButtonClick() {
+    // This is to avoid the button event firing again when space bar is pressed.
     this.removeButtonFocus();
     this.sample = this.getSample();
   }
@@ -30,11 +30,7 @@ export default class PracticeWordsComponent extends Component {
   }
 
   getSample() {
-    const newSample = this.getRandomWords()
-      .join(" ")
-      .replaceAll(" ", "_")
-      .split("");
-    return newSample;
+    return this.getRandomWords().join(" ").replaceAll(" ", "_").split("");
   }
 
   getRandomWords() {
@@ -78,8 +74,7 @@ export default class PracticeWordsComponent extends Component {
       this.handleStartOfSample();
     }
 
-    this.keyPressed = event.key;
-    this.checkIfCorrectKey();
+    this.checkIfCorrectKey(event.key);
 
     if (this.letterIndex === this.sample.length) {
       this.handleEndOfSample();
@@ -92,15 +87,15 @@ export default class PracticeWordsComponent extends Component {
     this.startTime = Date.now();
   }
 
-  checkIfCorrectKey() {
+  checkIfCorrectKey(keyPressed) {
     if (
-      (this.sample[this.letterIndex] === "_" && this.keyPressed === " ") ||
-      this.keyPressed === this.sample[this.letterIndex]
+      (this.sample[this.letterIndex] === "_" && keyPressed === " ") ||
+      keyPressed === this.sample[this.letterIndex]
     ) {
       this.letterIndex++;
     } else {
       if (
-        this.keyPressed !== "Shift" &&
+        keyPressed !== "Shift" &&
         !this.mistakeIndexes.includes(this.letterIndex)
       ) {
         this.mistakeIndexes.pushObject(this.letterIndex);
