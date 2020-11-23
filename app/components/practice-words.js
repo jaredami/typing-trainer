@@ -103,7 +103,10 @@ export default class PracticeWordsComponent extends Component {
     ) {
       this.letterIndex++;
     } else {
-      if (this.keyPressed !== "Shift") {
+      if (
+        this.keyPressed !== "Shift" &&
+        !this.mistakeIndexes.includes(this.letterIndex)
+      ) {
         this.mistakeIndexes.pushObject(this.letterIndex);
       }
     }
