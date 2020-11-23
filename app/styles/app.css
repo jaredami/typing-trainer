@@ -51,6 +51,10 @@ a {
   animation: cursor-blink 600ms infinite steps(1);
 }
 
+.sample__char--mistake {
+  color: red;
+}
+
 .basic-button {
   cursor: pointer;
   font-family: "Roboto Mono", monospace;

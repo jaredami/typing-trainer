@@ -3,7 +3,14 @@
 
 <div class="sample">
   {{#each this.sample as |char index|}}
-    <span class="sample__char {{if (eq this.letterIndex index) "sample__char--active"}}">{{char}}</span>
+    <span
+      class="
+        sample__char
+        {{if (eq this.letterIndex index) "sample__char--active"}}
+        {{if (contains index mistakeIndexes) "sample__char--mistake"}}
+      ">
+        {{char}}
+      </span>
   {{/each}}
 </div>
 

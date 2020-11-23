@@ -11,6 +11,7 @@ export default class PracticeWordsComponent extends Component {
   @tracked keyPressed = "-";
   @tracked sample = this.getSample();
   @tracked letterIndex = 0;
+  @tracked mistakeIndexes = A([]);
   @tracked wpm = "-";
 
   sampleLength = 5;
@@ -101,9 +102,8 @@ export default class PracticeWordsComponent extends Component {
       this.keyPressed === this.sample[this.letterIndex]
     ) {
       this.letterIndex++;
-      console.log("correct");
     } else {
-      console.log("incorrect");
+      this.mistakeIndexes.pushObject(this.letterIndex);
     }
   }
 
@@ -112,6 +112,7 @@ export default class PracticeWordsComponent extends Component {
     this.stats.addWpmEntry(this.wpm);
     this.sample = this.getSample();
     this.letterIndex = 0;
+    this.mistakeIndexes = [];
   }
 
   getWpm() {
