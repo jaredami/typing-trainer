@@ -17,9 +17,7 @@ export default class PracticeWordsComponent extends Component {
   sampleLength = 5;
   startTime;
 
-  /**
-   * Sample Region =========================================
-   */
+  // Region: Build Samples =========================================
 
   @action
   handleNewSampleButtonClick() {
@@ -72,9 +70,7 @@ export default class PracticeWordsComponent extends Component {
     return Math.floor(Math.random() * upperLimit) + lowerLimit;
   }
 
-  /**
-   * Key Press Region =========================================
-   */
+  // Region: Handle Key Presses =========================================
 
   @action
   handleKeyDown(event) {
