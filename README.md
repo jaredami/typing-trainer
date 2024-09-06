@@ -1,3 +1,5 @@
+![image](https://github.com/user-attachments/assets/03c95eae-bcd6-4740-9c74-fe4a5ae5362a)
+
 # typing-trainer
 
 This README outlines the details of collaborating on this Ember application.
